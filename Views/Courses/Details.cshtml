@@ -16,8 +16,8 @@
     <h4>Étudiants inscrits</h4>
     @foreach (var student in Model.Students)
     {
-        <div>
-            @student.Code
+        <div class="ellipsis">
+           <span class="studentCode"> @student.Code </span>
             @student.LastName
             @student.FirstName
         </div>

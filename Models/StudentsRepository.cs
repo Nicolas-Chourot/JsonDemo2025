@@ -1,5 +1,8 @@
 ﻿using JSON_DAL;
+using MDB.Models;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace JsonDemo.Models
 {
@@ -26,5 +29,14 @@ namespace JsonDemo.Models
             }
             return false;
         }
+        [JsonIgnore]
+        public SelectList ToSelectList
+        {
+            get
+            {
+                return SelectListUtilities<Student>.Convert(ToList(), "Caption");
+            }
+        }
+
     }
 }

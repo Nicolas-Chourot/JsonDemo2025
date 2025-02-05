@@ -7,7 +7,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 4px;
-    max-width:610px;
+    max-width:900px;
 }
 
 .HorSelectionsCMD {
@@ -22,7 +22,6 @@
     display: none;
     flex-direction: row;
     min-height: 40px;
-    width: 280px;
     align-items: center;
     justify-content: center;
 }
@@ -40,7 +39,6 @@
     .selectionsGrid {
         display: flex;
         flex-flow: column;
-        max-width:450px;
     }
 
     .HorSelectionsCMD {
@@ -50,4 +48,10 @@
     .VerSelectionsCMD {
         display: flex;
     }
+}
+
+select option {
+
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

@@ -15,9 +15,9 @@
     <h4>Inscriptions</h4>
     @foreach (var course in Model.Courses)
     {
-        <div>
-            @course.Code
-            @course.Title
+        <div class="ellipsis">
+            <span class="courseCode">@course.Code</span>
+            <span >@course.Title</span>
         </div>
     }
 </div>

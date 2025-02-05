@@ -1,9 +1,11 @@
 ﻿using JSON_DAL;
+using MDB.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace JsonDemo.Models
 {
@@ -51,6 +53,9 @@ namespace JsonDemo.Models
                 return courses;
             }
         }
+        [JsonIgnore]
+        public SelectList CoursesSelectList { get { return SelectListUtilities<Course>.Convert(Courses, "Caption"); } }
+
         public void DeleteAllRegistrations()
         {
             foreach (Registration registration in Registrations)

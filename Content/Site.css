@@ -1,4 +1,7 @@
 ﻿@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+
+
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -19,9 +22,6 @@ label {
     font-weight: bold;
 }
 
-form {
-    max-width: 90% !important;
-}
 /* Styles ajoutés */
 * {
     margin: 0px;
@@ -46,6 +46,13 @@ form {
     cursor: default;
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .appLogo {
     height: 36px;
 }
@@ -64,6 +71,15 @@ form {
     display: flex;
     justify-content: flex-end;
 }
+
+.unselected {
+    text-decoration: none;
+    color: lightgray;
+}
+
+    .unselected:hover {
+        color: aqua;
+    }
 
 label {
     margin-top: 8px;

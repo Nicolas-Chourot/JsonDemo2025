@@ -26,3 +26,6 @@
     .StudentListLayout:hover .icon {
         display: block !important;
     }
+    .studentCode {
+        color:blue;
+    }

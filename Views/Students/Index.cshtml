@@ -1,16 +1,17 @@
 ﻿
 
-@model IEnumerable<JsonDemo.Models.Student>
+    @model IEnumerable<JsonDemo.Models.Student>
 
-@{
-    ViewBag.Title = "Liste des étudiants";
-}
-@foreach (var item in Model)
-{
-    <div class="StudentListLayout">
-        <a href="@Url.Action("Details", new {id = item.Id})">
-            <div>@item.Code @item.LastName @item.FirstName</div>
-        </a>
-     </div>
-}
+    @{
+        ViewBag.Title = "Liste des étudiants";
+    }
+    @foreach (var item in Model)
+    {
+        <div class="StudentListLayout">
+            <a href="@Url.Action("Details", new {id = item.Id})">
+                <div><span class="studentCode">@item.Code</span> 
+                @item.LastName @item.FirstName</div>
+            </a>
+         </div>
+    }
 

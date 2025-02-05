@@ -7,10 +7,12 @@
     border-radius: 6px;
     font-family: 'Times New Roman';
 }
+
     .CourseListLayout a {
         text-decoration: none;
         color: black;
     }
+
     .CourseListLayout:hover {
         background-color: azure;
     }
@@ -22,3 +24,7 @@
     .CourseListLayout:hover .icon {
         display: block !important;
     }
+
+.courseCode {
+    color: blue;
+}
