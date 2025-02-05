@@ -1,0 +1,24 @@
+﻿.CourseListLayout {
+    height: 40px;
+    align-items: center;
+    font-size: larger;
+    cursor: pointer;
+    padding-left: 6px;
+    border-radius: 6px;
+    font-family: 'Times New Roman';
+}
+    .CourseListLayout a {
+        text-decoration: none;
+        color: black;
+    }
+    .CourseListLayout:hover {
+        background-color: azure;
+    }
+
+    .CourseListLayout .icon {
+        display: none !important;
+    }
+
+    .CourseListLayout:hover .icon {
+        display: block !important;
+    }

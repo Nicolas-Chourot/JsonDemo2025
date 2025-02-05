@@ -1,0 +1,25 @@
+﻿
+@model JsonDemo.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h5>@Model.Code</h5>
+@Model.Title
+<br />
+
+<hr />
+
+<div>
+    <h4>Étudiants inscrits</h4>
+    @foreach (var student in Model.Students)
+    {
+        <div>
+            @student.Code
+            @student.LastName
+            @student.FirstName
+        </div>
+    }
+</div>

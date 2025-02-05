@@ -1,0 +1,36 @@
+﻿
+@model JsonDemo.Models.Student
+
+@{
+    bool creating = Model.Id == 0;
+    string submitCaption = creating ? "Ajouter" : "Modifier";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(model => model.FirstName)
+
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.LastName)
+
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+    </div>
+    if (!creating)
+    {
+
+        <div>
+            @Html.Label("Inscriptions", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Helper.SelectionLists("selectedCoursesId", (SelectList)ViewBag.Registrations, (SelectList)ViewBag.Courses)
+        </div>
+    }
+
+    <hr />
+    <input type="submit" value="@submitCaption" class="btn btn-primary" />
+
+}

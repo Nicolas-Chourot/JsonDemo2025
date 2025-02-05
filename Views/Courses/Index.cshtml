@@ -1,0 +1,17 @@
+﻿@model IEnumerable<JsonDemo.Models.Course>
+
+@{
+    ViewBag.Title = "Liste des cours";
+}
+
+@foreach (var item in Model)
+{
+    <div class="CourseListLayout">
+        <a href="@Url.Action("Details", new {id = item.Id})">
+            @item.Code 
+        </a>
+    </div>
+}
+
+
+
