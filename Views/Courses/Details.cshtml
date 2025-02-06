@@ -16,10 +16,13 @@
     <h4>Étudiants inscrits</h4>
     @foreach (var student in Model.Students)
     {
-        <div class="ellipsis">
-           <span class="studentCode"> @student.Code </span>
-            @student.LastName
-            @student.FirstName
+        <div class="StudentListLayout ellipsis">
+            <a href="@Url.Action("Details", "Students", new {id = student.Id})">
+                <div>
+                    <span class="studentCode">@student.Code</span>
+                    @student.LastName @student.FirstName
+                </div>
+            </a>
         </div>
     }
 </div>
