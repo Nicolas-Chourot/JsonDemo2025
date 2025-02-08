@@ -16,9 +16,11 @@
     <h4>Inscriptions</h4>
     @foreach (var course in Model.Courses)
     {
-        <div class="ellipsis">
-            <span class="courseCode">@course.Code</span>
-            <span >@course.Title</span>
+        <div class="CourseListLayout ellipsis">
+            <a href="@Url.Action("Details", "Courses", new {id = course.Id})">
+                <span style="color:blue">@course.Code</span>
+                @course.Title
+            </a>
         </div>
     }
 </div>
