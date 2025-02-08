@@ -8,10 +8,18 @@ namespace JsonDemo.Models
 {
     public class Course : Record
     {
+        public Course()
+        {
+            Session = 1;
+        }
+
         [Display(Name = "Sigle"), Required(ErrorMessage = "Obligatoire")]
         public string Code { get; set; }
         [Display(Name = "Titre"), Required(ErrorMessage = "Obligatoire")]
         public string Title { get; set; }
+        [Display(Name = "Session"), Required(ErrorMessage = "Obligatoire")]
+        [Range(1, 6)]
+        public int Session { get; set; }
         [JsonIgnore]
         public string Caption
         {

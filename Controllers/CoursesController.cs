@@ -8,11 +8,17 @@ namespace JsonDemo.Controllers
 {
     public class CoursesController : Controller
     {
-        
+        public ActionResult Search()
+        {
+            Session["ShowCoursesSearch"] = !(bool)Session["ShowCoursesSearch"];
+            return RedirectToAction("Index");
+        }
         public ActionResult Index()
         {
             Session["id"] = 0;
-            return View(DB.Courses.ToList().OrderBy(m => m.Code));
+            if (Session["ShowCoursesSearch"] == null)
+                Session["ShowCoursesSearch"] = false;
+            return View(DB.Courses.ToList().OrderBy(m => m.Session).ThenBy(m=>m.Code));
         }
         public ActionResult Details(int id)
         {

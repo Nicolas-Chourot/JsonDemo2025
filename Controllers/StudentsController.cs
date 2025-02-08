@@ -8,10 +8,53 @@ namespace JsonDemo.Controllers
 {
     public class StudentsController : Controller
     {
-        public ActionResult Index()
+        public ActionResult ToogleSearch()
+        {
+            Session["ShowStudentsSearch"] = !(bool)Session["ShowStudentsSearch"];
+            return RedirectToAction("Index");
+        }
+        public ActionResult SearchName(string name)
+        {
+            Session["SearchStudentName"] = name;
+            return RedirectToAction("Index");
+        }
+        public ActionResult SearchYear(int year)
+        {
+            Session["SelectedStudentYear"] = year;
+            return RedirectToAction("Index");
+        }
+        public void InitSessionVariables()
         {
             Session["id"] = 0;
-            return View(DB.Students.ToList().OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
+            if (Session["ShowStudentsSearch"] == null)
+                Session["ShowStudentsSearch"] = false;
+
+            if (Session["SearchStudentName"] == null)
+                Session["SearchStudentName"] = "";
+
+            if (Session["SelectedStudentYear"] == null)
+                Session["SelectedStudentYear"] = 0; // all years
+
+            Session["StudentsYearsList"] = DB.Students.YearsList;
+        }
+
+        public ActionResult Index()
+        {
+            InitSessionVariables();
+          
+            string searchName = ((string)Session["SearchStudentName"]).ToLower();
+            int selectedYear = (int)Session["SelectedStudentYear"];
+            var students = DB.Students.ToList().OrderByDescending(m=>m.Year).ThenBy(m => m.LastName).ThenBy(m => m.FirstName).ToList();
+
+            if ((bool)Session["ShowStudentsSearch"])
+            {
+                if (searchName != "")
+                    students = students.Where(s => s.LastName.ToLower().StartsWith(searchName)).ToList();
+                if (selectedYear != 0) 
+                    students = students.Where(s => s.Year == selectedYear).ToList();
+            }
+
+            return View(students);
         }
         public ActionResult Details(int id)
         {
@@ -56,7 +99,7 @@ namespace JsonDemo.Controllers
             if (ModelState.IsValid)
             {
                 student.Id = (int)Session["id"];
-                student.Code = (string)Session["code"]; 
+                student.Code = (string)Session["code"];
                 DB.Students.Update(student, selectedCoursesId);
                 return RedirectToAction("Details", new { id = student.Id });
             }

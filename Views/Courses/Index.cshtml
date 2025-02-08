@@ -1,19 +1,28 @@
 ﻿
-    @model IEnumerable<JsonDemo.Models.Course>
+@model IEnumerable<JsonDemo.Models.Course>
 
-    @{
-        ViewBag.Title = "Liste des cours";
-    }
+@{
+    ViewBag.Title = "Liste des cours";
+}
 
-    @foreach (var item in Model)
-    {
-        <div class="CourseListLayout ellipsis">
-            <a href="@Url.Action("Details", new {id = item.Id})">
-                <span style="color:blue">@item.Code</span> 
-                @item.Title 
-            </a>
-        </div>
-    }
+@for (int session = 1; session < 7; session++)
+{
+    var courses = Model.Where(c => c.Session == session);
+    <details open>
+        <summary>Session @session</summary>
+        @foreach (var course in courses)
+        {
+            <div class="CourseListLayout ellipsis">
+                <a href="@Url.Action("Details", new {id = course.Id})">
+                    <span style="color:blue">@course.Code</span>
+                    @course.Title
+                </a>
+            </div>
+        }
+    </details>
+}
 
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

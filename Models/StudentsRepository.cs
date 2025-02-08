@@ -37,6 +37,19 @@ namespace JsonDemo.Models
                 return SelectListUtilities<Student>.Convert(ToList(), "Caption");
             }
         }
+        [JsonIgnore]
+        public List<int> YearsList
+        {
+            get
+            {
+                List<int> years = new List<int>();
+                foreach (Student student in DB.Students.ToList())
+                {
+                    if (!years.Contains(student.Year)) years.Add(student.Year);
+                }
+                return years;
+            }
+        }
 
     }
 }

@@ -33,6 +33,20 @@
         });
 
     })
+
+    // Toogle collapse uncollapse details
+    $('summary').on('click', function (e) {
+        if (e.ctrlKey) {
+            if ($(this).parent().attr('open') != undefined) {
+                $('details').removeAttr('open');
+                e.preventDefault();
+            }
+            else {
+                $('details').prop('open', true);
+                e.preventDefault();
+            }
+        }
+    })
 })
 
 function InstallAutoComplete(targetId, words) {

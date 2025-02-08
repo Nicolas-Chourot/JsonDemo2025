@@ -11,9 +11,10 @@
 
 </head>
 <body id="main">
-    <div id="header">
-        @{ Html.RenderPartial("_header");}
-    </div>
+    @{
+        Html.RenderPartial("_header");
+        Html.RenderPartial("_search");
+    }
     <div id="content">
         @RenderBody()
     </div>

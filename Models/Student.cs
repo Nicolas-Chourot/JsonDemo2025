@@ -33,6 +33,14 @@ namespace JsonDemo.Models
             get { return Code + " " + LastName + " " + FirstName; }
         }
         [JsonIgnore]
+        public int Year
+        {
+            get
+            {
+                return int.Parse(Code.Substring(0,4));
+            }
+        }
+        [JsonIgnore]
         public List<Registration> Registrations
         {
             get
