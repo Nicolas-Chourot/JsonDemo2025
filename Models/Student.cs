@@ -37,7 +37,7 @@ namespace JsonDemo.Models
         {
             get
             {
-                return int.Parse(Code.Substring(0,4));
+                return int.Parse(Code.Substring(0, 4));
             }
         }
         [JsonIgnore]
@@ -46,6 +46,14 @@ namespace JsonDemo.Models
             get
             {
                 return DB.Registrations.ToList().Where(r => r.StudentId == Id).ToList();
+            }
+        }
+        [JsonIgnore]
+        public List<Registration> NextSessionRegistrations
+        {
+            get
+            {
+                return DB.Registrations.ToList().Where(r => r.StudentId == Id && r.IsNextSession).ToList();
             }
         }
         [JsonIgnore]
@@ -62,19 +70,48 @@ namespace JsonDemo.Models
             }
         }
         [JsonIgnore]
+        public List<Course> NextSessionCourses
+        {
+            get
+            {
+                var courses = new List<Course>();
+                foreach (var registration in NextSessionRegistrations.OrderBy(r => r.Course.Code))
+                {
+                    courses.Add(registration.Course);
+                }
+                return courses;
+            }
+        }
+        [JsonIgnore]
         public SelectList CoursesSelectList { get { return SelectListUtilities<Course>.Convert(Courses, "Caption"); } }
 
+        [JsonIgnore]
+        public SelectList NextSessionCoursesToSelectList
+        {
+            get
+            {
+                return SelectListUtilities<Course>.Convert(NextSessionCourses, "Caption");
+            }
+        }
         public void DeleteAllRegistrations()
         {
             foreach (Registration registration in Registrations)
                 DB.Registrations.Delete(registration.Id);
         }
+
+        public void DeleteNextSessionRegistrations()
+        {
+            foreach (Registration registration in NextSessionRegistrations)
+                DB.Registrations.Delete(registration.Id);
+        }
         public void UpdateRegistrations(List<int> selectedCoursesId)
         {
-            DeleteAllRegistrations();
+            DeleteNextSessionRegistrations();
             if (selectedCoursesId != null)
                 foreach (int courseId in selectedCoursesId)
+                {
                     DB.Registrations.Add(new Registration { StudentId = Id, CourseId = courseId });
+                }
         }
     }
 }

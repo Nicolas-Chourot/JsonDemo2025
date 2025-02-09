@@ -13,9 +13,11 @@
         @foreach (var course in courses)
         {
             <div class="CourseListLayout ellipsis">
-                <a href="@Url.Action("Details", new {id = course.Id})">
-                    <span style="color:blue">@course.Code</span>
-                    @course.Title
+                <a href="@Url.Action("Details", new {id = course.Id})" class="ellipsis">
+                    <div class="ellipsis">
+                        <span class="courseCode">@course.Code</span>
+                        @course.Title
+                    </div>
                 </a>
             </div>
         }

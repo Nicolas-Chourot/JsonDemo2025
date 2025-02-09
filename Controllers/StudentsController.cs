@@ -83,12 +83,13 @@ namespace JsonDemo.Controllers
         }
         public ActionResult Edit()
         {
+            int year = NextSession.Year;
             int id = (int)Session["id"];
             Student student = DB.Students.Get(id);
             if (student != null)
             {
-                ViewBag.Registrations = SelectListUtilities<Course>.Convert(student.Courses, "Caption");
-                ViewBag.Courses = SelectListUtilities<Course>.Convert(DB.Courses.ToList(), "Caption");
+                ViewBag.Registrations = student.NextSessionCoursesToSelectList;
+                ViewBag.Courses = DB.Courses.NextSessionToSelectList;
                 return View(DB.Students.Get(id));
             }
             return RedirectToAction("Index");
@@ -103,8 +104,8 @@ namespace JsonDemo.Controllers
                 DB.Students.Update(student, selectedCoursesId);
                 return RedirectToAction("Details", new { id = student.Id });
             }
-            ViewBag.Registrations = SelectListUtilities<Course>.Convert(student.Courses, "Code");
-            ViewBag.Courses = SelectListUtilities<Course>.Convert(DB.Courses.ToList(), "Code");
+            ViewBag.Registrations = student.NextSessionCoursesToSelectList;
+            ViewBag.Courses = DB.Courses.NextSessionToSelectList;
             return View(student);
         }
         public ActionResult Delete()

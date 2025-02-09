@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var yearsList = ((List<int>)Session["StudentsYearsList"]).OrderByDescending(i => i);
 }
 
 
@@ -14,15 +15,26 @@
 
 <div>
     <h4>Étudiants inscrits</h4>
-    @foreach (var student in Model.Students)
+    @foreach (int year in yearsList)
     {
-        <div class="StudentListLayout ellipsis">
-            <a href="@Url.Action("Details", "Students", new {id = student.Id})">
-                <div>
-                    <span class="studentCode">@student.Code</span>
-                    @student.LastName @student.FirstName
-                </div>
-            </a>
-        </div>
+        var registrations = Model.Registrations.Where(r => r.Year == year).OrderBy(r => r.Course.Code);
+        if (registrations.Count() > 0)
+        {
+            <details open>
+                <summary>Cohorte @year</summary>
+                @foreach (var registration in registrations)
+                {
+                   <div class="StudentListLayout ellipsis">
+                       <a href="@Url.Action("Details", "Students", new {id = registration.Student.Id})">
+                           <div>
+                               <span class="studentCode">@registration.Student.Code</span>
+                               @registration.Student.LastName @registration.Student.FirstName
+                           </div>
+                       </a>
+                   </div>
+                }
+            </details>
+        }
     }
+    
 </div>

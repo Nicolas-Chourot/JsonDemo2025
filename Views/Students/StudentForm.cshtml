@@ -4,6 +4,8 @@
 @{
     bool creating = Model.Id == 0;
     string submitCaption = creating ? "Ajouter" : "Modifier";
+    int currentYear = DateTime.Now.Year;
+    string session = "Inscription à la session " + (JsonDemo.Models.NextSession.ValidSession.Contains(1) ? " d'automne " : " d'hiver ") + JsonDemo.Models.NextSession.Year;
 }
 @using (Html.BeginForm())
 {
@@ -25,7 +27,7 @@
     {
 
         <div>
-            @Html.Label("Inscriptions", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label(session)
             @Helper.SelectionLists("selectedCoursesId", (SelectList)ViewBag.Registrations, (SelectList)ViewBag.Courses)
         </div>
     }

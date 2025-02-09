@@ -1,7 +1,9 @@
 ﻿using JSON_DAL;
 using MDB.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace JsonDemo.Models
@@ -30,11 +32,11 @@ namespace JsonDemo.Models
             return false;
         }
         [JsonIgnore]
-        public SelectList ToSelectList
+        public SelectList NextSessionToSelectList
         {
             get
             {
-                return SelectListUtilities<Course>.Convert(ToList(), "Caption");
+                return SelectListUtilities<Course>.Convert(ToList().Where(c => c.IsNextSession), "Caption");
             }
         }
 

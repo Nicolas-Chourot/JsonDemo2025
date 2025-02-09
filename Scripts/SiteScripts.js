@@ -34,6 +34,8 @@
 
     })
 
+    $('summary').attr('title', 'Utilisez ctrl-clic pour développer/réduire');
+
     // Toogle collapse uncollapse details
     $('summary').on('click', function (e) {
         if (e.ctrlKey) {

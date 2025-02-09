@@ -10,20 +10,23 @@
 @foreach (int year in yearsList)
 {
     var students = Model.Where(s => s.Year == year);
-    <details open>
-        <summary>Cohorte @year</summary>
-        @foreach (var item in students)
-        {
-            <div class="StudentListLayout">
-                <a href="@Url.Action("Details", new { id = item.Id })">
-                    <div>
-                        <span class="studentCode">@item.Code</span>
-                        @item.LastName @item.FirstName
-                    </div>
-                </a>
-            </div>
-        }
-    </details>
+    if (students.Count() > 0)
+    {
+        <details open>
+            <summary>Cohorte @year</summary>
+            @foreach (var item in students)
+            {
+                <div class="StudentListLayout">
+                    <a href="@Url.Action("Details", new { id = item.Id })">
+                        <div>
+                            <span class="studentCode">@item.Code</span>
+                            @item.LastName @item.FirstName
+                        </div>
+                    </a>
+                </div>
+            }
+        </details>
+    }
 }
 
 @section Scripts {
