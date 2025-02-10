@@ -8,7 +8,7 @@ namespace JsonDemo.Models
     {
         public Registration()
         {
-            Year = DateTime.Now.Year;
+            Year = NextSession.Year;
         }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
