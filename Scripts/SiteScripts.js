@@ -5,8 +5,8 @@
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        yearRange: "-100:+0",
-        dayNamesMin: ["D", "L", "M", "M", "J", "V", "S"],
+        yearRange: "-100:-15",
+        dayNamesMin: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
         monthNamesShort: ["Janv.", "Févr.", "Mars", "Avril", "Mai", "Juin", "Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc."]
     });
 
