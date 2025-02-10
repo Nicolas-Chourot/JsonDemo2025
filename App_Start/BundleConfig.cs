@@ -14,11 +14,12 @@ namespace JsonDemo
                         "~/Scripts/bootbox-custom.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                       "~/Scripts/jquery.validate*",
-                       "~/Scripts/jquery-ui.js",
-                       "~/Scripts/imageUploader.js",
-                       "~/Scripts/selections.js",
-                       "~/Scripts/SiteScripts.js"));
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/imageUploader.js",
+                        "~/Scripts/selections.js",
+                        "~/Scripts/jquery.maskedinput.js",
+                        "~/Scripts/SiteScripts.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/jquery-ui.css",

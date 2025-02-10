@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    /*$('.phone').mask('(999) 999-9999');
-    $('.zipcode').mask('a9a 9a9');*/
+    $('.phone').mask('(999) 999-9999');
+    $('.zipcode').mask('a9a 9a9');
     $(".datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
