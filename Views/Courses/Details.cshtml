@@ -18,7 +18,7 @@ Session @Model.Session
     <h4>Étudiants inscrits</h4>
     @foreach (int year in yearsList)
     {
-        var registrations = Model.Registrations.Where(r => r.Year == year).OrderBy(r => r.Course.Code);
+        var registrations = Model.Registrations.Where(r => r.Year == year).OrderBy(r => r.Student.LastName).ThenBy(r => r.Student.FirstName);
         if (registrations.Count() > 0)
         {
             <details open>
