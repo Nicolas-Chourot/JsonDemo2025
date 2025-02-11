@@ -83,7 +83,6 @@ namespace JsonDemo.Controllers
         }
         public ActionResult Edit()
         {
-            int year = NextSession.Year;
             int id = (int)Session["id"];
             Student student = DB.Students.Get(id);
             if (student != null)
