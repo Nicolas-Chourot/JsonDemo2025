@@ -47,7 +47,8 @@ namespace JsonDemo.Models
             get
             {
                 int value = DateTime.Now.Year;
-                if (DateTime.Now.Month > August) value++;
+                int month = DateTime.Now.Month;
+                if (month > August && month <= 12) value++;
                 return value;
             }
         }
