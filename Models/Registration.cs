@@ -20,7 +20,7 @@ namespace JsonDemo.Models
         { 
             get 
             { 
-                return Year == NextSession.Year && NextSession.ValidSession.Contains(Course.Session); 
+                return Year == NextSession.Year && NextSession.ValidSessions.Contains(Course.Session); 
             } 
         }
     }

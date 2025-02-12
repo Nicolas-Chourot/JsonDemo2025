@@ -21,7 +21,7 @@ namespace JsonDemo.Models
         [Range(1, 6)]
         public int Session { get; set; }
         [JsonIgnore]
-        public bool IsNextSession { get { return NextSession.ValidSession.Contains(Session); } }
+        public bool IsNextSession { get { return NextSession.ValidSessions.Contains(Session); } }
 
         [JsonIgnore]
         public string Caption

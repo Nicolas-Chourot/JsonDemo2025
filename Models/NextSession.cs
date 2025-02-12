@@ -22,7 +22,7 @@ namespace JsonDemo.Models
             }
         }
 
-        static public List<int> ValidSession
+        static public List<int> ValidSessions
         {
             get
             {
@@ -52,7 +52,13 @@ namespace JsonDemo.Models
                 return value;
             }
         }
-
+        static public string Caption
+        {
+            get
+            {
+                return "session " + (ValidSessions.Contains(1) ? " d'automne " : " d'hiver ") + Year;
+            }
+        }
 
     }
 }
