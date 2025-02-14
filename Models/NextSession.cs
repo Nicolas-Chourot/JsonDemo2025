@@ -27,17 +27,19 @@ namespace JsonDemo.Models
             get
             {
                 List<int> result = new List<int>();
-                if (DateTime.Now.Month > August)
-                {
-                    result.Add(2);
-                    result.Add(4);
-                    result.Add(6);
-                }
-                if (DateTime.Now.Month > January)
+                if (DB.CurrentDate.Month > January &&
+                    DB.CurrentDate.Month <= August)
                 {
                     result.Add(1);
                     result.Add(3);
                     result.Add(5);
+
+                }
+                else
+                {
+                    result.Add(2);
+                    result.Add(4);
+                    result.Add(6);
                 }
                 return result;
             }
@@ -46,9 +48,9 @@ namespace JsonDemo.Models
         {
             get
             {
-                int value = DateTime.Now.Year;
-                int month = DateTime.Now.Month;
-                if (month > August && month <= 12) value++;
+                int value = DB.CurrentDate.Year;
+                if (DB.CurrentDate.Month > August &&
+                    DB.CurrentDate.Month <= 12) value++;
                 return value;
             }
         }
@@ -59,6 +61,5 @@ namespace JsonDemo.Models
                 return "session " + (ValidSessions.Contains(1) ? " d'automne " : " d'hiver ") + Year;
             }
         }
-
     }
 }
