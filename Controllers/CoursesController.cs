@@ -8,7 +8,7 @@ namespace JsonDemo.Controllers
 {
     public class CoursesController : Controller
     {
-        public ActionResult Search()
+        public ActionResult ToogleSearch()
         {
             Session["ShowCoursesSearch"] = !(bool)Session["ShowCoursesSearch"];
             return RedirectToAction("Index");
